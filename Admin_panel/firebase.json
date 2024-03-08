@@ -1,10 +1,62 @@
 {
   "hosting": {
-    "public": "dist/food-app-admin",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ]
+  },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint"
+      ]
+    }
+  ],
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "functions": {
+      "port": 9098
+    },
+    "firestore": {
+      "port": 9097
+    },
+    "database": {
+      "port": 9096
+    },
+    "hosting": {
+      "port": 9095
+    },
+    "pubsub": {
+      "port": 9094
+    },
+    "storage": {
+      "port": 9093
+    },
+    "eventarc": {
+      "port": 9092
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
+  },
+  "extensions": {},
+  "storage": {
+    "rules": "storage.rules"
   }
 }
