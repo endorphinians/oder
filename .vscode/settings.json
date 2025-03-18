@@ -1,14 +1,19 @@
 {
     "angular-schematics.schematicsDefaultOptions": {
         "angular-component": {
-            "ngOnInit": true
+            "ngOnInit": true,
+            "skipPathSubfolder": true,
+            "skipChangeDetectionOnPush": true
         },
         "angular-page": {
-            "skipNgOnInit": false
+            "skipNgOnInit": false,
+            "skipPathSubfolder": true,
+            "skipChangeDetectionOnPush": true
         },
         "angular-*": {
             "externalTemplate": true,
-            "style": "scss"
+            "style": "scss",
+            "inlineStyle": true
         }
     },
     "angular-schematics.forcedDependencies": {
