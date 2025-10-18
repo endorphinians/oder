@@ -53,8 +53,8 @@ export class CouponsComponent implements OnInit {
       cancelButtonText: this.api.translate('Cancle'),
       backdrop: false,
       background: 'white'
-    }).then((data) => {
-      if (data && data.value) {
+    }).then((result) => {
+      if (result && result.value) {
         console.log('update it');
         item.status = text;
         this.spinner.show();
@@ -71,7 +71,7 @@ export class CouponsComponent implements OnInit {
       }
     });
   }
-  search(string) {
+  search(str) {
 
   }
 

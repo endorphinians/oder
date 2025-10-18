@@ -76,7 +76,7 @@ export class BasicLoginComponent implements OnInit {
       onAdd: (toast: ToastData) => {
         console.log('Toast ' + toast.id + ' has been added!');
       },
-      onRemove: function (toast: ToastData) {
+      onRemove: (toast: ToastData) => {
         console.log('Toast ' + toast.id + ' has been removed!');
       }
     };
@@ -93,7 +93,7 @@ export class BasicLoginComponent implements OnInit {
       onAdd: (toast: ToastData) => {
         console.log('Toast ' + toast.id + ' has been added!');
       },
-      onRemove: function (toast: ToastData) {
+      onRemove: (toast: ToastData) => {
         console.log('Toast ' + toast.id + ' has been removed!');
       }
     };

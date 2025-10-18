@@ -54,8 +54,8 @@ export class BannersComponent implements OnInit {
       cancelButtonText: this.api.translate('Cancle'),
       backdrop: false,
       background: 'white'
-    }).then((data) => {
-      if (data && data.value) {
+    }).then((result) => {
+      if (result && result.value) {
         console.log('update it');
         item.status = text;
         console.log(item);
@@ -84,8 +84,8 @@ export class BannersComponent implements OnInit {
       cancelButtonText: this.api.translate('Cancle'),
       backdrop: false,
       background: 'white'
-    }).then((data) => {
-      if (data && data.value) {
+    }).then((result) => {
+      if (result && result.value) {
         console.log('update it');
         this.spinner.show();
         this.api.deleteBanner(item).then((data) => {

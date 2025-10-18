@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { ApisService } from '../services/apis.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { orderBy } from 'lodash';
@@ -7,7 +7,7 @@ import { orderBy } from 'lodash';
   templateUrl: './chats.component.html',
   styleUrls: ['./chats.component.scss']
 })
-export class ChatsComponent implements OnInit {
+export class ChatsComponent implements OnInit, AfterViewInit {
   @ViewChild('scrollMe', { static: false }) private myScrollContainer: ElementRef;
   @ViewChildren('messages') messagesList: QueryList<any>;
   users: any[] = [];
@@ -52,7 +52,7 @@ export class ChatsComponent implements OnInit {
     this.users = [];
     this.api.getUsers().then((data) => {
       console.log('users data', data);
-      let users = [];
+      const users = [];
       data.forEach(element => {
         if (element.type !== 'admin') {
           if (!element.count) {
@@ -76,10 +76,10 @@ export class ChatsComponent implements OnInit {
   ngOnInit() {
   }
 
-  search(string) {
+  search(str) {
     this.resetChanges();
-    console.log('string', string);
-    this.users = this.filterItems(string);
+    console.log('string', str);
+    this.users = this.filterItems(str);
   }
   send() {
     console.log('this.mess', this.message);
@@ -88,16 +88,16 @@ export class ChatsComponent implements OnInit {
       const text = this.message;
       this.message = '';
       console.log('send');
-      const id = Math.floor(100000000 + Math.random() * 900000000);
+      const messageId = Math.floor(100000000 + Math.random() * 900000000);
       const data = {
         msg: text,
         from: 'admin',
         timestamp: new Date().toISOString(),
         id: 'admin',
-        docId: id
+        docId: messageId
       };
-      this.adb.collection('messages').doc(this.id).collection('chats').doc(id.toString()).set(data).then((data) => {
-        console.log('sent', data);
+      this.adb.collection('messages').doc(this.id).collection('chats').doc(messageId.toString()).set(data).then((res) => {
+        console.log('sent', res);
       }).catch(error => {
         console.log(error);
       });
